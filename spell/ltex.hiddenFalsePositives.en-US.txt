@@ -1,0 +1,3 @@
+{"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QFor the low low cost of $35 dollars you can support a cool project called the Mathematics Genealogy Project.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QAlternatively, you can press the \"Download Words\" button.\\E$"}
+{"rule":"FOUR_NN","sentence":"^\\QThe compute function carries out the arborescent tangle vertex parity computation as described in the use-case.\\E$"}

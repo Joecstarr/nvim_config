@@ -1,42 +1,80 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
-	-- Lazy config causes weird issues which I don't wanna debug
-	lazy = false,
-	config = function()
-		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+    {
+        "nvim-treesitter/nvim-treesitter",
+        branch = "main",
+        version = false, -- last release is way too old and doesn't work on Windows
+        build = function()
+            local TS = require("nvim-treesitter")
+            if not TS.get_installed then
+                return
+            end
+            TS.update(nil, { summary = true })
+        end,
+        lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+        cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
+        opts_extend = { "ensure_installed" },
+        ---@class lazyvim.TSConfig: TSConfig
+        opts = {
+            -- LazyVim config for treesitter
+            ensure_installed = {
+                "bash",
+                "cpp",
+                "c",
+                "diff",
+                "html",
+                "javascript",
+                "jsdoc",
+                "json",
+                "janet_simple",
+                "lua",
+                "luadoc",
+                "luap",
+                "latex",
+                "markdown",
+                "markdown_inline",
+                "printf",
+                "python",
+                "query",
+                "regex",
+                "toml",
+                "tsx",
+                "typescript",
+                "vim",
+                "vimdoc",
+                "xml",
+                "yaml",
+                "toml",
+                "astro",
+            },
+            highlight = {
+                enable = true,
+                disable = { "markdown" },
 
-		parser_config.lustre = {
-			install_info = {
-				url = "https://github.com/Arxwel/tree-sitter-lustre",
-				files = { "src/parser.c" },
-				requires_generate_from_grammar = false,
-			},
-			filetype = "lus",
-		}
+                -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+                additional_vim_regex_highlighting = false,
+            },
+        },
+        ---@param opts lazyvim.TSConfig
+        config = function(_, opts)
+            local TS = require("nvim-treesitter")
 
-		require("nvim-treesitter.configs").setup({
-			ensure_installed = {
-				"css",
-				"djot",
-				"javascript",
-				"lua",
-				"typescript",
-				"snakemake",
-				"gleam",
-				"nix",
-				"python",
-				"vimdoc",
-				"markdown", -- LSPsaga
-				"markdown_inline", -- LSPsaga
-			},
-			highlight = {
-				enable = true,
-				disable = { "markdown" },
+            -- some quick sanity checks
 
-				-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-				additional_vim_regex_highlighting = false,
-			},
-		})
-	end,
+            -- setup treesitter
+            TS.setup(opts)
+
+            -- install missing parsers
+            local install = vim.tbl_filter(function(lang) end, opts.ensure_installed or {})
+            if #install > 0 then
+                TS.install(install, { summary = true }):await(function() end)
+            end
+
+            -- treesitter highlighting
+            vim.api.nvim_create_autocmd("FileType", {
+                callback = function(ev) end,
+            })
+
+            vim.treesitter.language.register("markdown", "mdx") -- the someft filetype will use the python parser and queries.
+        end,
+    },
 }
