@@ -1,1 +1,4 @@
 lazy-lock.json
+colors/dracula_pro*
+autoload/**/dracula_pro*
+
