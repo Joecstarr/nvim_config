@@ -37,9 +37,6 @@ vim.api.nvim_create_autocmd("FileType", {
     command = "set nowrap",
 })
 
-vim.cmd("colorscheme dracula_pro")
--- vim.cmd("colorscheme dracula_pro_alucard")
-
 -- Tab settings
 local indent = 4 -- All our indents should be 2 characters
 vim.opt.tabstop = indent
@@ -74,3 +71,5 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 vim.g.lazyvim_picker = "snacks"
+
+require("options.colorschemes")
