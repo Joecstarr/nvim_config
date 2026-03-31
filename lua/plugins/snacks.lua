@@ -45,15 +45,6 @@ return {
                 end,
                 desc = "Buffers (all)",
             },
-            {
-                "<leader>uh",
-                function()
-                    if vim.lsp.inlay_hint then
-                        Snacks.toggle.inlay_hints()
-                    end
-                end,
-                desc = "Toggle Inlay Hints",
-            },
         },
         opts = {
             picker = {

@@ -109,8 +109,6 @@ vim.api.nvim_create_user_command("Run", function(opts)
     vim.system(opts.fargs)
 end, { nargs = "?" })
 
-wk.add(expand(keymap))
-
 -- lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
@@ -131,3 +129,9 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+vim.keymap.set({ "i", "n", "v" }, "<leader>uh", function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle inlay hints" })
+
+wk.add(expand(keymap))
