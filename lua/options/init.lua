@@ -37,6 +37,8 @@ vim.api.nvim_create_autocmd("FileType", {
     command = "set nowrap",
 })
 
+vim.treesitter.language.register("markdown", "mdx") -- the someft filetype will use the python parser and queries.
+
 -- Tab settings
 local indent = 4 -- All our indents should be 2 characters
 vim.opt.tabstop = indent

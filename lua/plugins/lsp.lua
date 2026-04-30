@@ -49,13 +49,13 @@ return {
                 myrumdl = {
                     command = "rumdl",
                     args = function(_, ctx)
-                        local args = { "fmt", "--fix", "--config" }
+                        local args = { "fmt", "--config" }
                         -- Find rumdl in the project if it exists
                         local cfg_path = vim.fs.find(".rumdl.toml", { upward = true, path = ctx.dirname })[1]
                         if cfg_path then
                             table.insert(args, cfg_path)
                         else
-                            table.insert(args, "~/.rumdl.tomldsldkjfd")
+                            table.insert(args, "~/.rumdl.toml")
                         end
                         table.insert(args, "-")
                         return args
@@ -197,6 +197,7 @@ return {
                         "org",
                         "pandoc",
                         "text",
+                        "toml",
                     },
                     languageToolHttpServerUri = "http://localhost:6767",
                     checkFrequency = "save",
@@ -246,18 +247,7 @@ return {
     },
     {
         "numToStr/Comment.nvim",
-        config = function()
-            require("Comment").setup({
-                pre_hook = function()
-                    return vim.bo.commentstring
-                end,
-            })
-        end,
         lazy = false,
-        dependencies = {
-            "JoosepAlviste/nvim-ts-context-commentstring",
-            "nvim-treesitter/nvim-treesitter",
-        },
     },
 
     {
@@ -269,36 +259,6 @@ return {
             vim.keymap.set("n", "<leader>rn", function()
                 return ":IncRename " .. vim.fn.expand("<cword>")
             end, { expr = true }),
-        },
-    },
-    {
-        "p00f/clangd_extensions.nvim",
-        lazy = true,
-        config = function() end,
-        opts = {
-            inlay_hints = {
-                inline = false,
-            },
-            ast = {
-                --These require codicons (https://github.com/microsoft/vscode-codicons)
-                role_icons = {
-                    type = "",
-                    declaration = "",
-                    expression = "",
-                    specifier = "",
-                    statement = "",
-                    ["template argument"] = "",
-                },
-                kind_icons = {
-                    Compound = "",
-                    Recovery = "",
-                    TranslationUnit = "",
-                    PackExpansion = "",
-                    TemplateTypeParm = "",
-                    TemplateTemplateParm = "",
-                    TemplateParamObject = "",
-                },
-            },
         },
     },
 }
