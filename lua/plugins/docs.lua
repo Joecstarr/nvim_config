@@ -10,6 +10,7 @@ return {
                 -- jump_map = "<C-e>"       -- (DROPPED SUPPORT, see [here](#cycle-between-annotations) !) The keymap in order to jump in the annotation fields (in insert mode)
                 vim.keymap.set("n", "<leader>gD", ":lua require('neogen').generate()<CR>", { noremap = true }),
                 languages = {
+                    python = { template = { annotation_convention = "numpydoc" } },
                     c = {
                         template = {
                             annotation_convention = "my_doxygen",

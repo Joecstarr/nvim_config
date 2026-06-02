@@ -7,15 +7,48 @@ return {
         cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
         lazy = false,
         build = ":TSUpdate",
-        config = function()
-            require("nvim-treesitter.config").setup({
-                auto_install = true,
-                -- LazyVim config for treesitter
-                indent = { enable = true },
-                highlight = { enable = true, additional_vim_regex_highlighting = false },
-                folds = { enable = true },
-                ensure_installed = "maintained",
-            })
+        opt = {
+            auto_install = true,
+            indent = { enable = true },
+            highlight = { enable = true, additional_vim_regex_highlighting = false },
+            folds = { enable = true },
+        },
+        config = function(_, opts)
+            local ts = require("nvim-treesitter")
+            local languages = {
+                "bash",
+                "cpp",
+                "c",
+                "diff",
+                "html",
+                "javascript",
+                "jsdoc",
+                "json",
+                "janet_simple",
+                "lua",
+                "luadoc",
+                "luap",
+                "latex",
+                "markdown",
+                "markdown_inline",
+                "printf",
+                "python",
+                "query",
+                "regex",
+                "toml",
+                "tsx",
+                "typescript",
+                "vim",
+                "vimdoc",
+                "xml",
+                "yaml",
+                "toml",
+                "astro",
+            }
+
+            ts.setup(opts)
+            -- Use :TSInstall for manuall install languages
+            ts.install(languages)
         end,
     },
 }

@@ -26,7 +26,12 @@ return {
                     "nixpkgs_fmt",
                     stop_after_first = true,
                 },
-                python = { "ruff_format", "ruff_organize_imports" },
+                python = { -- To fix auto-fixable lint errors.
+                    -- To run the Ruff formatter.
+                    "ruff_format",
+                    -- To organize the imports.
+                    "ruff_organize_imports",
+                },
                 tex = { "tex-fmt" },
                 plaintex = { "tex-fmt" },
                 markdown = { "myrumdl" },
@@ -44,6 +49,7 @@ return {
                 jsx = { "prettier" },
                 tsx = { "prettier" },
                 typescriptreact = { "prettier" },
+                css = { "prettier" },
             },
             formatters = {
                 myrumdl = {
@@ -115,6 +121,7 @@ return {
                 markdown_oxide = {},
                 harper_ls = {
                     linters = {
+                        ToDoHyphen = false,
                         SentenceCapitalization = false,
                         SpellCheck = true,
                         SpelledNumbers = false,
@@ -161,10 +168,12 @@ return {
                 },
                 neocmakelsp = {},
                 lua_ls = {},
-                pyright = {},
+                ty = {},
                 rust_analyzer = {},
                 gleam = {},
+                css = {},
                 toml = {},
+                yaml = {},
                 janet = {},
                 ltex_plus = {
                     additionalRules = {
@@ -199,7 +208,7 @@ return {
                         "text",
                         "toml",
                     },
-                    languageToolHttpServerUri = "http://localhost:6767",
+                    languageToolHttpServerUri = "http://localhost:8081",
                     checkFrequency = "save",
                 },
                 -- use LanguageTool via ltex for spell checking
