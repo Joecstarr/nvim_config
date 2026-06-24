@@ -1,3 +1,6 @@
 {"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QFor the low low cost of $35 dollars you can support a cool project called the Mathematics Genealogy Project.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QAlternatively, you can press the \"Download Words\" button.\\E$"}
 {"rule":"FOUR_NN","sentence":"^\\QThe compute function carries out the arborescent tangle vertex parity computation as described in the use-case.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QGood, because community support is somewhat available.\\E$"}
+{"rule":"PHRASE_REPETITION","sentence":"^\\QPolhemus Fastrak\nPolhemus Viper\nPolhemus Patriot\nPolhemus Patriot Wireless\nPolhemus G4\nOptiTrack\nCustom system around OpenCV\\E$"}
+{"rule":"SENT_START_CONJUNCTIVE_LINKING_ADVERB_COMMA","sentence":"^\\QAdditionally/alternatively, this phase would be for producing an explicit data and process design for an experiment.\\E$"}
